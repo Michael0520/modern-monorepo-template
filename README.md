@@ -1,0 +1,95 @@
+# Modern Monorepo Template
+
+> Based on Christoph Nakazawa's "Fastest Frontend Tooling for Humans & AI" (2026)
+
+A production-ready monorepo template using the fastest modern tooling for frontend and full-stack TypeScript development.
+
+## Tech Stack
+
+| Category        | Tool                                          |
+| --------------- | --------------------------------------------- |
+| Package Manager | pnpm workspaces                               |
+| Runtime         | Node.js >= 22                                 |
+| Frontend        | Vite + React 19 + Tailwind CSS v4 + shadcn/ui |
+| Backend         | Elysia + @elysiajs/node                       |
+| Type Checking   | tsgo (TypeScript Go)                          |
+| Linting         | Oxlint + @nkzw/oxlint-config                  |
+| Formatting      | Oxfmt                                         |
+| Testing         | Vitest                                        |
+| CI              | GitHub Actions                                |
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) >= 22
+- [pnpm](https://pnpm.io/) (corepack enabled)
+
+### Quick Start
+
+```bash
+pnpm install
+pnpm dev
+```
+
+This starts all apps in development mode with hot reloading.
+
+## Scripts
+
+All scripts can be run from the repository root and will execute across all workspaces where applicable.
+
+| Script             | Description                                            |
+| ------------------ | ------------------------------------------------------ |
+| `pnpm dev`         | Start all apps in development mode                     |
+| `pnpm build`       | Build all apps and packages                            |
+| `pnpm check`       | Run type checking, linting, format checking, and tests |
+| `pnpm tsc`         | Type check all packages with tsgo                      |
+| `pnpm lint`        | Lint all packages with Oxlint                          |
+| `pnpm lint:fix`    | Lint and auto-fix issues                               |
+| `pnpm lint:format` | Check formatting with Oxfmt                            |
+| `pnpm format`      | Format all files with Oxfmt                            |
+| `pnpm test`        | Run all tests with Vitest                              |
+| `pnpm test:watch`  | Run tests in watch mode                                |
+| `pnpm clean`       | Remove all build artifacts and node_modules            |
+
+## Project Structure
+
+```
+modern-monorepo-template/
+├── apps/
+│   ├── web/                 # React SPA (Vite + React 19)
+│   └── api/                 # API server (Elysia + Node.js)
+├── packages/
+│   └── shared/              # Shared UI components (shadcn/ui + Tailwind CSS v4)
+├── .github/
+│   └── workflows/
+│       └── ci.yml           # GitHub Actions CI pipeline
+├── .vscode/                 # VS Code settings and recommended extensions
+├── package.json             # Root workspace configuration
+├── pnpm-workspace.yaml      # pnpm workspace definition
+├── tsconfig.json             # Root TypeScript configuration
+└── oxlint.json              # Oxlint configuration
+```
+
+## Adding shadcn Components
+
+This template uses [shadcn/ui](https://ui.shadcn.com/) for UI components, configured in the shared package. To add a new component:
+
+```bash
+cd packages/shared
+pnpm dlx shadcn@latest add button
+```
+
+Replace `button` with any component name from the shadcn/ui library. Components are installed into `packages/shared/src/components/ui/` and can be imported by any app in the monorepo.
+
+## VS Code Setup
+
+This repository includes recommended VS Code settings and extensions for the best development experience. When you open the project, VS Code will prompt you to install the recommended extensions:
+
+- **OXC** (`oxc.oxc-vscode`) -- Linting and formatting
+- **Tailwind CSS IntelliSense** (`bradlc.vscode-tailwindcss`) -- Tailwind class autocomplete
+- **Prettier** (`esbenp.prettier-vscode`) -- Formatting for non-JS/TS files (CSS, HTML, Markdown, YAML, JSON)
+
+## License
+
+[MIT](./LICENSE)

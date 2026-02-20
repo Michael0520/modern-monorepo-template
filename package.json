@@ -1,0 +1,41 @@
+{
+  "name": "modern-monorepo-template",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "run-p dev:*",
+    "dev:web": "pnpm -F web dev",
+    "dev:server": "pnpm -F server dev",
+    "build": "pnpm -r run build",
+    "check": "run-p tsc lint lint:format",
+    "tsc": "tsgo --noEmit -p packages/shared/tsconfig.json && tsgo --noEmit -p apps/web/tsconfig.json && tsgo --noEmit -p apps/server/tsconfig.json",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "lint:format": "oxfmt --check .",
+    "format": "oxfmt --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rm -rf apps/*/dist packages/*/dist node_modules/.cache"
+  },
+  "devDependencies": {
+    "@nkzw/eslint-plugin": "^2.0.0",
+    "@nkzw/oxlint-config": "^1.0.1",
+    "@tailwindcss/vite": "^4.2.0",
+    "@types/node": "^25.3.0",
+    "@typescript/native-preview": "latest",
+    "eslint-plugin-no-only-tests": "^3.3.0",
+    "eslint-plugin-perfectionist": "^5.6.0",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-unused-imports": "^4.4.1",
+    "npm-run-all2": "^8.0.4",
+    "oxfmt": "^0.34.0",
+    "oxlint": "^1.49.0",
+    "tailwindcss": "^4.2.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@10.30.1"
+}

@@ -1,0 +1,10 @@
+{
+  "printWidth": 100,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "experimentalSortImports": {},
+  "experimentalTailwindcss": {
+    "functions": ["clsx", "cn", "cva"]
+  },
+  "ignorePatterns": ["dist", "node_modules", "pnpm-lock.yaml", "coverage"]
+}
