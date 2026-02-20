@@ -51,12 +51,12 @@ Vite proxies `/api/*` to `http://localhost:3000` (Elysia server). Both start tog
 
 ## Tooling
 
-| Tool | Config | Notes |
-|------|--------|-------|
-| **tsgo** | `tsconfig.json` (root, extended by each workspace) | Type checking only; `--noEmit` in tsc script to prevent server emit |
-| **oxlint** | `oxlint.config.ts` (extends `@nkzw/oxlint-config`) | Enforces `perfectionist/sort-objects`, `array-type: Array<T>` style |
-| **oxfmt** | `.oxfmtrc.json` | 100 width, single quotes, sorts imports, sorts Tailwind classes in `cn()`/`cva()` |
-| **vitest** | `vitest.workspace.ts` | web=jsdom, server/shared=node; web tests need `// @vitest-environment jsdom` comment |
+| Tool       | Config                                             | Notes                                                                                |
+| ---------- | -------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **tsgo**   | `tsconfig.json` (root, extended by each workspace) | Type checking only; `--noEmit` in tsc script to prevent server emit                  |
+| **oxlint** | `oxlint.config.ts` (extends `@nkzw/oxlint-config`) | Enforces `perfectionist/sort-objects`, `array-type: Array<T>` style                  |
+| **oxfmt**  | `.oxfmtrc.json`                                    | 100 width, single quotes, sorts imports, sorts Tailwind classes in `cn()`/`cva()`    |
+| **vitest** | `vitest.workspace.ts`                              | web=jsdom, server/shared=node; web tests need `// @vitest-environment jsdom` comment |
 
 ## Lint conventions
 
