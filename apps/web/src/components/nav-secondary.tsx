@@ -8,18 +8,18 @@ import {
   SidebarMenuItem,
 } from '@repo/shared/components/sidebar';
 import { type Icon } from '@tabler/icons-react';
-import * as React from 'react';
+import { type ComponentPropsWithoutRef } from 'react';
 
 export function NavSecondary({
   items,
   ...props
 }: {
-  items: {
+  items: Array<{
+    icon: Icon;
     title: string;
     url: string;
-    icon: Icon;
-  }[];
-} & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
+  }>;
+} & ComponentPropsWithoutRef<typeof SidebarGroup>) {
   return (
     <SidebarGroup {...props}>
       <SidebarGroupContent>

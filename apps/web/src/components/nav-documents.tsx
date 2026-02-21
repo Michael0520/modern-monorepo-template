@@ -21,11 +21,11 @@ import { IconDots, IconFolder, IconShare3, IconTrash, type Icon } from '@tabler/
 export function NavDocuments({
   items,
 }: {
-  items: {
+  items: Array<{
+    icon: Icon;
     name: string;
     url: string;
-    icon: Icon;
-  }[];
+  }>;
 }) {
   const { isMobile } = useSidebar();
 
@@ -43,15 +43,15 @@ export function NavDocuments({
             </SidebarMenuButton>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <SidebarMenuAction showOnHover className="data-[state=open]:bg-accent rounded-sm">
+                <SidebarMenuAction className="data-[state=open]:bg-accent rounded-sm" showOnHover>
                   <IconDots />
                   <span className="sr-only">More</span>
                 </SidebarMenuAction>
               </DropdownMenuTrigger>
               <DropdownMenuContent
+                align={isMobile ? 'end' : 'start'}
                 className="w-24 rounded-lg"
                 side={isMobile ? 'bottom' : 'right'}
-                align={isMobile ? 'end' : 'start'}
               >
                 <DropdownMenuItem>
                   <IconFolder />
