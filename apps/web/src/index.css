@@ -1,1 +1,6 @@
 @import '@repo/shared/styles/globals.css';
+@source "../node_modules/@repo/shared/src";
+
+:root {
+  --header-height: calc(var(--spacing) * 12 + 1px);
+}
