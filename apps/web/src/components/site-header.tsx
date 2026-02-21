@@ -2,6 +2,8 @@ import { Button } from '@repo/shared/components/button';
 import { Separator } from '@repo/shared/components/separator';
 import { SidebarTrigger } from '@repo/shared/components/sidebar';
 
+import { ServerStatus } from '@/components/server-status';
+
 export function SiteHeader() {
   return (
     <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
@@ -10,6 +12,7 @@ export function SiteHeader() {
         <Separator className="mx-2 data-[orientation=vertical]:h-4" orientation="vertical" />
         <h1 className="text-base font-medium">Documents</h1>
         <div className="ml-auto flex items-center gap-2">
+          <ServerStatus />
           <Button asChild className="hidden sm:flex" size="sm" variant="ghost">
             <a
               className="dark:text-foreground"
