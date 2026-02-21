@@ -21,7 +21,7 @@ const app = new Elysia({ adapter: node() })
       success: true,
     }),
   )
-  .listen(3000);
+  .listen(Number(process.env.SERVER_PORT) || 3000);
 
 // eslint-disable-next-line no-console
 console.log(`Server running at http://localhost:${app.server?.port}`);

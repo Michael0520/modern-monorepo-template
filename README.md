@@ -6,17 +6,17 @@ A production-ready monorepo template using the fastest modern tooling for fronte
 
 ## Tech Stack
 
-| Category        | Tool                                          |
-| --------------- | --------------------------------------------- |
-| Package Manager | pnpm workspaces                               |
-| Runtime         | Node.js >= 22                                 |
-| Frontend        | Vite + React 19 + Tailwind CSS v4 + shadcn/ui |
-| Backend         | Elysia + @elysiajs/node                       |
-| Type Checking   | tsgo (TypeScript Go)                          |
-| Linting         | Oxlint + @nkzw/oxlint-config                  |
-| Formatting      | Oxfmt                                         |
-| Testing         | Vitest                                        |
-| CI              | GitHub Actions                                |
+| Category        | Tool                                                             |
+| --------------- | ---------------------------------------------------------------- |
+| Package Manager | pnpm workspaces                                                  |
+| Runtime         | Node.js >= 22                                                    |
+| Frontend        | Next.js 15 (App Router) + React 19 + Tailwind CSS v4 + shadcn/ui |
+| Backend         | Elysia + @elysiajs/node                                          |
+| Type Checking   | tsgo (TypeScript Go)                                             |
+| Linting         | Oxlint + @nkzw/oxlint-config                                     |
+| Formatting      | Oxfmt                                                            |
+| Testing         | Vitest                                                           |
+| CI              | GitHub Actions                                                   |
 
 ## Getting Started
 
@@ -32,43 +32,44 @@ pnpm install
 pnpm dev
 ```
 
-This starts all apps in development mode with hot reloading.
+This starts web (`localhost:3001`) and server (`localhost:3000`) in development mode with hot reloading.
 
 ## Scripts
 
 All scripts can be run from the repository root and will execute across all workspaces where applicable.
 
-| Script             | Description                                            |
-| ------------------ | ------------------------------------------------------ |
-| `pnpm dev`         | Start all apps in development mode                     |
-| `pnpm build`       | Build all apps and packages                            |
-| `pnpm check`       | Run type checking, linting, format checking, and tests |
-| `pnpm tsc`         | Type check all packages with tsgo                      |
-| `pnpm lint`        | Lint all packages with Oxlint                          |
-| `pnpm lint:fix`    | Lint and auto-fix issues                               |
-| `pnpm lint:format` | Check formatting with Oxfmt                            |
-| `pnpm format`      | Format all files with Oxfmt                            |
-| `pnpm test`        | Run all tests with Vitest                              |
-| `pnpm test:watch`  | Run tests in watch mode                                |
-| `pnpm clean`       | Remove all build artifacts and node_modules            |
+| Script             | Description                                                          |
+| ------------------ | -------------------------------------------------------------------- |
+| `pnpm dev`         | Start all apps in development mode                                   |
+| `pnpm build`       | Build all apps and packages                                          |
+| `pnpm check`       | Run type checking (tsgo), linting (oxlint), and format check (oxfmt) |
+| `pnpm tsc`         | Type check all packages with tsgo                                    |
+| `pnpm lint`        | Lint all packages with Oxlint                                        |
+| `pnpm lint:fix`    | Lint and auto-fix issues                                             |
+| `pnpm lint:format` | Check formatting with Oxfmt                                          |
+| `pnpm format`      | Format all files with Oxfmt                                          |
+| `pnpm test`        | Run all tests with Vitest                                            |
+| `pnpm test:watch`  | Run tests in watch mode                                              |
+| `pnpm clean`       | Remove all build artifacts and node_modules                          |
 
 ## Project Structure
 
 ```
 modern-monorepo-template/
 ├── apps/
-│   ├── web/                 # React SPA (Vite + React 19)
-│   └── api/                 # API server (Elysia + Node.js)
+│   ├── web/                 # Next.js 15 (App Router) + React 19
+│   └── server/              # API server (Elysia + Node.js)
 ├── packages/
 │   └── shared/              # Shared UI components (shadcn/ui + Tailwind CSS v4)
 ├── .github/
 │   └── workflows/
 │       └── ci.yml           # GitHub Actions CI pipeline
 ├── .vscode/                 # VS Code settings and recommended extensions
+├── CLAUDE.md                # Claude Code guidance
 ├── package.json             # Root workspace configuration
 ├── pnpm-workspace.yaml      # pnpm workspace definition
 ├── tsconfig.json             # Root TypeScript configuration
-└── oxlint.json              # Oxlint configuration
+└── oxlint.config.ts         # Oxlint configuration
 ```
 
 ## Adding shadcn Components
@@ -80,7 +81,7 @@ cd packages/shared
 pnpm dlx shadcn@latest add button
 ```
 
-Replace `button` with any component name from the shadcn/ui library. Components are installed into `packages/shared/src/components/ui/` and can be imported by any app in the monorepo.
+Replace `button` with any component name from the shadcn/ui library. Components are installed into `packages/shared/src/components/` and can be imported by any app in the monorepo.
 
 ## VS Code Setup
 
