@@ -4,6 +4,8 @@
 
 A production-ready monorepo template using the fastest modern tooling for frontend and full-stack TypeScript development.
 
+**Demo:** [modern-monorepo-template-web.vercel.app](https://modern-monorepo-template-web.vercel.app)
+
 ## Tech Stack
 
 | Category        | Tool                                                             |
@@ -18,6 +20,7 @@ A production-ready monorepo template using the fastest modern tooling for fronte
 | Testing         | Vitest                                                           |
 | Auth            | better-auth (email/password + Google OAuth)                      |
 | Database        | Prisma 7 + PostgreSQL                                            |
+| Deployment      | Vercel (serverless)                                              |
 | CI              | GitHub Actions                                                   |
 
 ## Getting Started
@@ -90,6 +93,40 @@ modern-monorepo-template/
 ├── tsconfig.json             # Root TypeScript configuration
 └── oxlint.config.ts         # Oxlint configuration
 ```
+
+## Deployment (Vercel)
+
+This template deploys as two separate Vercel projects from the same repo:
+
+### 1. Deploy Server (Elysia)
+
+- **Root Directory:** `apps/server`
+- **Application Preset:** Elysia
+- **Environment Variables:**
+
+| Variable             | Value                        |
+| -------------------- | ---------------------------- |
+| `DATABASE_URL`       | PostgreSQL connection string |
+| `BETTER_AUTH_SECRET` | Same as `.env`               |
+| `WEB_URL`            | Your web Vercel URL          |
+| `BETTER_AUTH_URL`    | Your server Vercel URL       |
+
+### 2. Deploy Web (Next.js)
+
+- **Root Directory:** `apps/web`
+- **Application Preset:** Next.js
+- **Environment Variables:**
+
+| Variable  | Value                  |
+| --------- | ---------------------- |
+| `API_URL` | Your server Vercel URL |
+
+### Important Notes
+
+- Deploy server first, then web (web needs the server URL)
+- After both are deployed, go back to the server project and set `WEB_URL` + `BETTER_AUTH_URL`, then redeploy
+- The auth client uses same-origin requests (no `baseURL`), so all `/api/*` calls go through Next.js rewrite proxy to the server
+- On HTTPS, better-auth prefixes cookies with `__Secure-` — the middleware handles both cookie names
 
 ## Adding shadcn Components
 
