@@ -1,6 +1,6 @@
 import { SidebarInset } from '@repo/shared/components/sidebar';
 
-import data from '@/app/dashboard/data.json';
+import data from '@/app/(dashboard)/dashboard/data.json';
 import { AppSidebar } from '@/components/app-sidebar';
 import { ChartAreaInteractive } from '@/components/chart-area-interactive';
 import { DataTable } from '@/components/data-table';
