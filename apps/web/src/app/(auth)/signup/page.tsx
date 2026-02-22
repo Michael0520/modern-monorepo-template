@@ -12,10 +12,10 @@ import { Separator } from '@repo/shared/components/separator';
 import { authClient } from '@repo/shared/lib/auth-client';
 
 import AuthBackgroundShape from '@/assets/svg/auth-background-shape';
-import LoginForm from '@/components/shadcn-studio/blocks/login-page-01/login-form';
+import SignupForm from '@/components/shadcn-studio/blocks/login-page-01/signup-form';
 import Logo from '@/components/shadcn-studio/logo';
 
-const Login = () => {
+export default function SignupPage() {
   return (
     <div className="relative flex h-auto min-h-screen items-center justify-center overflow-x-hidden px-4 py-10 sm:px-6 lg:px-8">
       <div className="absolute">
@@ -27,21 +27,21 @@ const Login = () => {
           <Logo className="gap-3" />
 
           <div>
-            <CardTitle className="mb-1.5 text-2xl">Sign in</CardTitle>
+            <CardTitle className="mb-1.5 text-2xl">Create an account</CardTitle>
             <CardDescription className="text-base">
-              Enter your credentials to continue.
+              Enter your details to get started.
             </CardDescription>
           </div>
         </CardHeader>
 
         <CardContent>
           <div className="space-y-4">
-            <LoginForm />
+            <SignupForm />
 
             <p className="text-muted-foreground text-center">
-              Don&apos;t have an account?{' '}
-              <a className="text-card-foreground hover:underline" href="/signup">
-                Create an account
+              Already have an account?{' '}
+              <a className="text-card-foreground hover:underline" href="/login">
+                Sign in
               </a>
             </p>
 
@@ -61,13 +61,11 @@ const Login = () => {
               }
               variant="outline"
             >
-              Sign in with Google
+              Sign up with Google
             </Button>
           </div>
         </CardContent>
       </Card>
     </div>
   );
-};
-
-export default Login;
+}

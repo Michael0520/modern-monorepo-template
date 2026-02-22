@@ -1,7 +1,6 @@
 'use client';
 
 import { Button } from '@repo/shared/components/button';
-import { Checkbox } from '@repo/shared/components/checkbox';
 import { Input } from '@repo/shared/components/input';
 import { Label } from '@repo/shared/components/label';
 import { authClient } from '@repo/shared/lib/auth-client';
@@ -9,7 +8,7 @@ import { EyeIcon, EyeOffIcon, LoaderIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-const LoginForm = () => {
+const SignupForm = () => {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
   const [error, setError] = useState('');
@@ -21,16 +20,18 @@ const LoginForm = () => {
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
+    const name = formData.get('name') as string;
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
 
-    const { error: signInError } = await authClient.signIn.email({
+    const { error: signUpError } = await authClient.signUp.email({
       email,
+      name,
       password,
     });
 
-    if (signInError) {
-      setError(signInError.message || 'Sign in failed');
+    if (signUpError) {
+      setError(signUpError.message || 'Sign up failed');
       setLoading(false);
     } else {
       router.push('/');
@@ -45,14 +46,29 @@ const LoginForm = () => {
         </div>
       )}
 
+      {/* Name */}
+      <div className="space-y-1">
+        <Label className="leading-5" htmlFor="name">
+          Full name*
+        </Label>
+        <Input
+          disabled={loading}
+          id="name"
+          name="name"
+          placeholder="Enter your full name"
+          required
+          type="text"
+        />
+      </div>
+
       {/* Email */}
       <div className="space-y-1">
-        <Label className="leading-5" htmlFor="userEmail">
+        <Label className="leading-5" htmlFor="email">
           Email address*
         </Label>
         <Input
           disabled={loading}
-          id="userEmail"
+          id="email"
           name="email"
           placeholder="Enter your email address"
           required
@@ -70,6 +86,7 @@ const LoginForm = () => {
             className="pr-9"
             disabled={loading}
             id="password"
+            minLength={8}
             name="password"
             placeholder="••••••••••••••••"
             required
@@ -88,19 +105,11 @@ const LoginForm = () => {
         </div>
       </div>
 
-      {/* Remember Me */}
-      <div className="flex items-center gap-3">
-        <Checkbox className="size-6" id="rememberMe" />
-        <Label className="text-muted-foreground" htmlFor="rememberMe">
-          Remember Me
-        </Label>
-      </div>
-
       <Button className="w-full" disabled={loading} type="submit">
-        {loading ? <LoaderIcon className="animate-spin" /> : 'Sign in'}
+        {loading ? <LoaderIcon className="animate-spin" /> : 'Create account'}
       </Button>
     </form>
   );
 };
 
-export default LoginForm;
+export default SignupForm;

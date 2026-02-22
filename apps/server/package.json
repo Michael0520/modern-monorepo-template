@@ -8,11 +8,16 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
+    "@elysiajs/cors": "^1.4.1",
     "@elysiajs/node": "^1.4.5",
+    "@prisma/adapter-pg": "^7.4.1",
+    "@prisma/client": "^7.4.1",
     "@repo/shared": "workspace:*",
+    "better-auth": "^1.4.18",
     "elysia": "^1.4.25"
   },
   "devDependencies": {
+    "prisma": "^7.4.1",
     "tsx": "^4.21.0"
   }
 }

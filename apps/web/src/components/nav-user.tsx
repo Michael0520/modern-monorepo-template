@@ -16,6 +16,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@repo/shared/components/sidebar';
+import { authClient } from '@repo/shared/lib/auth-client';
 import {
   IconCreditCard,
   IconDotsVertical,
@@ -89,7 +90,12 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={async () => {
+                await authClient.signOut();
+                window.location.href = '/login';
+              }}
+            >
               <IconLogout />
               Log out
             </DropdownMenuItem>

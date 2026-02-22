@@ -9,3 +9,5 @@ coverage/
 .next/
 test-results/
 playwright-report/
+# Prisma generated client
+apps/server/src/generated/
