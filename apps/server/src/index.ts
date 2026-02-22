@@ -5,7 +5,7 @@ import { Elysia } from 'elysia';
 
 import { auth } from './auth.js';
 
-const app = new Elysia({ adapter: node() })
+const app = new Elysia({ adapter: process.env.VERCEL ? undefined : node() })
   .use(
     cors({
       credentials: true,
@@ -47,10 +47,13 @@ const app = new Elysia({ adapter: node() })
       ],
       success: true,
     }),
-  )
-  .listen(Number(process.env.SERVER_PORT) || 3000);
+  );
 
-// eslint-disable-next-line no-console
-console.log(`Server running at http://localhost:${app.server?.port}`);
+if (!process.env.VERCEL) {
+  app.listen(Number(process.env.SERVER_PORT) || 3000);
+  // eslint-disable-next-line no-console
+  console.log(`Server running at http://localhost:${app.server?.port}`);
+}
 
+export default app;
 export type App = typeof app;
