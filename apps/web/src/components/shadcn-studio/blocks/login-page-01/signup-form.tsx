@@ -19,22 +19,27 @@ const SignupForm = () => {
     setError('');
     setLoading(true);
 
-    const formData = new FormData(e.currentTarget);
-    const name = formData.get('name') as string;
-    const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
+    try {
+      const formData = new FormData(e.currentTarget);
+      const name = formData.get('name') as string;
+      const email = formData.get('email') as string;
+      const password = formData.get('password') as string;
 
-    const { error: signUpError } = await authClient.signUp.email({
-      email,
-      name,
-      password,
-    });
+      const { error: signUpError } = await authClient.signUp.email({
+        email,
+        name,
+        password,
+      });
 
-    if (signUpError) {
-      setError(signUpError.message || 'Sign up failed');
+      if (signUpError) {
+        setError(signUpError.message || 'Sign up failed');
+      } else {
+        router.push('/');
+      }
+    } catch {
+      setError('An unexpected error occurred');
+    } finally {
       setLoading(false);
-    } else {
-      router.push('/');
     }
   };
 

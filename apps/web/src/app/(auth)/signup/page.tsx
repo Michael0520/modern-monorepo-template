@@ -10,6 +10,7 @@ import {
 } from '@repo/shared/components/card';
 import { Separator } from '@repo/shared/components/separator';
 import { authClient } from '@repo/shared/lib/auth-client';
+import Link from 'next/link';
 
 import AuthBackgroundShape from '@/assets/svg/auth-background-shape';
 import SignupForm from '@/components/shadcn-studio/blocks/login-page-01/signup-form';
@@ -40,9 +41,9 @@ export default function SignupPage() {
 
             <p className="text-muted-foreground text-center">
               Already have an account?{' '}
-              <a className="text-card-foreground hover:underline" href="/login">
+              <Link className="text-card-foreground hover:underline" href="/login">
                 Sign in
-              </a>
+              </Link>
             </p>
 
             <div className="flex items-center gap-4">
