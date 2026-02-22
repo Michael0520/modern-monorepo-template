@@ -10,4 +10,7 @@ export default defineConfig({
       '@': resolve(import.meta.dirname, 'apps/web/src'),
     },
   },
+  test: {
+    exclude: ['e2e/**', '**/node_modules/**', '**/dist/**'],
+  },
 });
