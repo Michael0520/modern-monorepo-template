@@ -11,7 +11,9 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const sessionToken = request.cookies.get('better-auth.session_token');
+  const sessionToken =
+    request.cookies.get('better-auth.session_token') ||
+    request.cookies.get('__Secure-better-auth.session_token');
 
   if (!sessionToken) {
     const loginUrl = new URL('/login', request.url);
