@@ -16,6 +16,8 @@ A production-ready monorepo template using the fastest modern tooling for fronte
 | Linting         | Oxlint + @nkzw/oxlint-config                                     |
 | Formatting      | Oxfmt                                                            |
 | Testing         | Vitest                                                           |
+| Auth            | better-auth (email/password + Google OAuth)                      |
+| Database        | Prisma 7 + PostgreSQL                                            |
 | CI              | GitHub Actions                                                   |
 
 ## Getting Started
@@ -24,15 +26,32 @@ A production-ready monorepo template using the fastest modern tooling for fronte
 
 - [Node.js](https://nodejs.org/) >= 22
 - [pnpm](https://pnpm.io/) (corepack enabled)
+- PostgreSQL database (e.g. [Supabase](https://supabase.com/), [Neon](https://neon.tech/), or local)
+
+### Environment Setup
+
+```bash
+cp .env.example .env
+```
+
+Fill in the required values:
+
+| Variable               | Required | Description                  |
+| ---------------------- | -------- | ---------------------------- |
+| `DATABASE_URL`         | Yes      | PostgreSQL connection string |
+| `BETTER_AUTH_SECRET`   | Yes      | `openssl rand -base64 32`    |
+| `GOOGLE_CLIENT_ID`     | No       | Google OAuth client ID       |
+| `GOOGLE_CLIENT_SECRET` | No       | Google OAuth client secret   |
 
 ### Quick Start
 
 ```bash
 pnpm install
+cd apps/server && npx prisma db push && cd ../..
 pnpm dev
 ```
 
-This starts web (`localhost:3001`) and server (`localhost:3000`) in development mode with hot reloading.
+This starts web (`localhost:3001`) and server (`localhost:3000`) in development mode with hot reloading. Visit `localhost:3001` to see the login page.
 
 ## Scripts
 
@@ -58,7 +77,7 @@ All scripts can be run from the repository root and will execute across all work
 modern-monorepo-template/
 ├── apps/
 │   ├── web/                 # Next.js 15 (App Router) + React 19
-│   └── server/              # API server (Elysia + Node.js)
+│   └── server/              # API server (Elysia + Node.js) + Auth (better-auth) + Prisma
 ├── packages/
 │   └── shared/              # Shared UI components (shadcn/ui + Tailwind CSS v4)
 ├── .github/

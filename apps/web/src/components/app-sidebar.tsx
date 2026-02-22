@@ -9,6 +9,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@repo/shared/components/sidebar';
+import { authClient } from '@repo/shared/lib/auth-client';
 import {
   IconCamera,
   IconChartBar,
@@ -143,14 +144,17 @@ const data = {
       url: '#',
     },
   ],
-  user: {
-    avatar: '/avatars/shadcn.jpg',
-    email: 'm@example.com',
-    name: 'shadcn',
-  },
 };
 
 export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
+  const { data: session } = authClient.useSession();
+
+  const user = {
+    avatar: session?.user?.image || '',
+    email: session?.user?.email || '',
+    name: session?.user?.name || '',
+  };
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -159,7 +163,7 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
             <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
               <a href="#">
                 <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
+                <span className="text-base font-semibold">My App</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -171,7 +175,7 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
         <NavSecondary className="mt-auto" items={data.navSecondary} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={user} />
       </SidebarFooter>
     </Sidebar>
   );

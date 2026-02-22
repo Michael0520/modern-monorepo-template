@@ -16,7 +16,7 @@ export function SiteHeader() {
           <Button asChild className="hidden sm:flex" size="sm" variant="ghost">
             <a
               className="dark:text-foreground"
-              href="https://github.com/shadcn-ui/ui/tree/main/apps/v4/app/(examples)/dashboard"
+              href="https://github.com/milo/modern-monorepo-template"
               rel="noopener noreferrer"
               target="_blank"
             >
