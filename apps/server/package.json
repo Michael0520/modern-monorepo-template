@@ -9,16 +9,16 @@
     "start": "node --env-file=../../.env dist/index.js"
   },
   "dependencies": {
-    "@elysiajs/cors": "^1.4.1",
+    "@elysiajs/cors": "^1.4.2",
     "@elysiajs/node": "^1.4.5",
-    "@prisma/adapter-pg": "^7.4.1",
-    "@prisma/client": "^7.4.1",
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
     "@repo/shared": "workspace:*",
-    "better-auth": "^1.4.18",
-    "elysia": "^1.4.25"
+    "better-auth": "^1.6.10",
+    "elysia": "^1.4.28"
   },
   "devDependencies": {
-    "prisma": "^7.4.1",
+    "prisma": "^7.8.0",
     "tsx": "^4.21.0"
   }
 }
